@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecurePolicy Widget Test Page</title>
+  <style>
+    body {
+      background-color: #0B0F19;
+      color: #F8FAFC;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 540px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    h1 {
+      font-size: 2rem;
+      background: linear-gradient(135deg, #F8FAFC 30%, #6366F1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fillColor: transparent;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: #94A3B8;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .code-block {
+      background-color: rgba(0,0,0,0.3);
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #E2E8F0;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background-color: rgba(16, 185, 129, 0.1);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>SecurePolicy Widget Testing</h1>
+    <p>
+      This is a local staging page to test the client-side Zero-Knowledge Web Chat Widget.
+    </p>
+
+    <div class="code-block">
+      // Loader script tag embedded on this page:<br/>
+      &lt;script <br/>
+      &nbsp;&nbsp;src="http://localhost:3000/api/widget"<br/>
+      &nbsp;&nbsp;data-org="test_org_99"<br/>
+      &nbsp;&nbsp;data-pass="pwd"<br/>
+      &nbsp;&nbsp;defer&gt;<br/>
+      &lt;/script&gt;
+    </div>
+
+    <p style="font-size: 0.9rem;">
+      <strong>How to test:</strong><br/>
+      1. Start the server: <code>npm run dev</code><br/>
+      2. Open this page: <code>http://localhost:3000/test-widget.html</code><br/>
+      3. Click the floating chat bubble in the bottom right corner.
+    </p>
+
+    <span class="status-badge">🟢 Integration Ready</span>
+  </div>
+
+  <!-- Injected Chat Widget Loader -->
+  <script 
+    src="/api/widget"
+    data-org="test_org_99"
+    data-pass="pwd"
+    defer>
+  </script>
+</body>
+</html>
