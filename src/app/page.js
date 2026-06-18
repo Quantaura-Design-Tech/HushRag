@@ -401,15 +401,215 @@ export default function LandingAndAuthPage() {
           <div className="hr-hiw-header">
             <h2>How HushRag Works</h2>
             <p className="hr-hiw-subtitle">Two simple pipelines. 100% private.</p>
-          </div>
-          <div className="hr-hiw-visual">
-            <Image
-              src="/images/how-it-works.png"
-              alt="How HushRag Works flowchart showing Document Upload Pipeline and Employee Query Pipeline"
-              width={3840}
-              height={2043}
-              priority
-            />
+          </div>          <div className="hr-hiw-visual pt-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 grid-rows-4 lg:grid-rows-2 gap-x-6 gap-y-8 lg:gap-x-14 lg:gap-y-14 w-full max-w-[1200px] mx-auto items-stretch justify-center relative">
+              
+              {/* Step 1 */}
+              <div className="col-start-1 row-start-1 lg:col-start-1 lg:row-start-1 relative flex flex-col opacity-0 animate-fade-in-up stagger-1 z-10">
+                <article className="hr-flowchart-card group">
+                  <span className="absolute -top-2 left-2 lg:-top-3 lg:left-4 w-5 h-5 lg:w-7 h-7 rounded-full bg-gradient-to-br from-[#0a6a55] to-[#034c3c] text-white flex items-center justify-center font-extrabold shadow-[0_8px_20px_rgba(10,106,85,0.25)] text-[10px] lg:text-[13px] z-10">1</span>
+                  <div className="hr-flowchart-card-icon-wrapper">
+                    <svg className="w-4 h-4 lg:w-7 lg:h-7 text-[#0d8066] stroke-current stroke-[2.5] fill-none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 64 64">
+                      <path d="M22 48H18.8C11.7 48 6 42.3 6 35.2c0-6.3 4.7-11.7 10.9-12.6A17.4 17.4 0 0 1 49.7 27 10.5 10.5 0 0 1 48.5 48H42" />
+                      <path d="M32 48V28" />
+                      <path d="m23 36 9-9 9 9" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col flex-1 items-center w-full">
+                    <h3 className="hr-flowchart-card-title">Upload &amp; Parse</h3>
+                    <p className="hr-flowchart-card-desc">Admin uploads docs (PDF, TXT, DOCX).</p>
+                    <span className="hr-flowchart-card-badge">POST /api/parse</span>
+                  </div>
+                </article>
+                {/* Connector: Right Arrow (Both) */}
+                <div className="absolute top-1/2 -right-6 lg:-right-14 w-6 lg:w-14 h-[2px] z-0 -translate-y-1/2">
+                  <div className="w-full h-full connector-h animate-dash-h"></div>
+                  <div className="absolute right-[2px] top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="col-start-2 row-start-1 lg:col-start-2 lg:row-start-1 relative flex flex-col opacity-0 animate-fade-in-up stagger-2 z-10">
+                <article className="hr-flowchart-card group">
+                  <span className="absolute -top-2 left-2 lg:-top-3 lg:left-4 w-5 h-5 lg:w-7 h-7 rounded-full bg-gradient-to-br from-[#0a6a55] to-[#034c3c] text-white flex items-center justify-center font-extrabold shadow-[0_8px_20px_rgba(10,106,85,0.25)] text-[10px] lg:text-[13px] z-10">2</span>
+                  <div className="hr-flowchart-card-icon-wrapper">
+                    <svg className="w-4 h-4 lg:w-7 lg:h-7 text-[#0d8066] stroke-current stroke-[2.5] fill-none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 64 64">
+                      <path d="M20 8h20l10 10v38H20z" />
+                      <path d="M40 8v12h10" />
+                      <path d="M26 31h18M26 39h18M26 47h12" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col flex-1 items-center w-full">
+                    <h3 className="hr-flowchart-card-title">Text Extraction</h3>
+                    <p className="hr-flowchart-card-desc">Server converts file to clean markdown.</p>
+                    <span className="hr-flowchart-card-badge">Markdown Output</span>
+                  </div>
+                </article>
+                {/* Connector Mobile: Down Bridge to Row 2 */}
+                <div className="lg:hidden absolute -bottom-8 left-1/2 -translate-x-1/2 w-[2px] h-8 z-0">
+                  <div className="w-full h-full connector-v animate-dash-v"></div>
+                  <div className="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-2 h-2 border-b-2 border-r-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+                {/* Connector Desktop: Right Arrow */}
+                <div className="hidden lg:block absolute top-1/2 -right-14 w-14 h-[2px] z-0 -translate-y-1/2">
+                  <div className="w-full h-full connector-h animate-dash-h"></div>
+                  <div className="absolute right-[2px] top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="col-start-2 row-start-2 lg:col-start-3 lg:row-start-1 relative flex flex-col opacity-0 animate-fade-in-up stagger-3 z-10">
+                <article className="hr-flowchart-card group">
+                  <span className="absolute -top-2 left-2 lg:-top-3 lg:left-4 w-5 h-5 lg:w-7 h-7 rounded-full bg-gradient-to-br from-[#0a6a55] to-[#034c3c] text-white flex items-center justify-center font-extrabold shadow-[0_8px_20px_rgba(10,106,85,0.25)] text-[10px] lg:text-[13px] z-10">3</span>
+                  <div className="hr-flowchart-card-icon-wrapper">
+                    <svg className="w-4 h-4 lg:w-7 lg:h-7 text-[#0d8066] stroke-current stroke-[2.5] fill-none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 64 64">
+                      <path d="M26 20h26M26 32h26M26 44h26" />
+                      <circle cx="14" cy="20" r="3" />
+                      <circle cx="14" cy="32" r="3" />
+                      <circle cx="14" cy="44" r="3" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col flex-1 items-center w-full">
+                    <h3 className="hr-flowchart-card-title">Chunk &amp; Prepare</h3>
+                    <p className="hr-flowchart-card-desc">Splits text into 500-word sliding chunks.</p>
+                    <span className="hr-flowchart-card-badge">Sliding Window</span>
+                  </div>
+                </article>
+                {/* Connector Mobile: Left Arrow to Step 4 */}
+                <div className="lg:hidden absolute top-1/2 -left-6 w-6 h-[2px] z-0 -translate-y-1/2">
+                  <div className="w-full h-full connector-h-rev animate-dash-h-rev"></div>
+                  <div className="absolute left-[2px] top-1/2 -translate-y-1/2 w-2 h-2 border-b-2 border-l-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+                {/* Connector Desktop: Right Arrow */}
+                <div className="hidden lg:block absolute top-1/2 -right-14 w-14 h-[2px] z-0 -translate-y-1/2">
+                  <div className="w-full h-full connector-h animate-dash-h"></div>
+                  <div className="absolute right-[2px] top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="col-start-1 row-start-2 lg:col-start-4 lg:row-start-1 relative flex flex-col opacity-0 animate-fade-in-up stagger-4 z-10">
+                <article className="hr-flowchart-card group">
+                  <span className="absolute -top-2 left-2 lg:-top-3 lg:left-4 w-5 h-5 lg:w-7 h-7 rounded-full bg-gradient-to-br from-[#0a6a55] to-[#034c3c] text-white flex items-center justify-center font-extrabold shadow-[0_8px_20px_rgba(10,106,85,0.25)] text-[10px] lg:text-[13px] z-10">4</span>
+                  <div className="hr-flowchart-card-icon-wrapper">
+                    <svg className="w-4 h-4 lg:w-7 lg:h-7 text-[#0d8066] stroke-current stroke-[2.5] fill-none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 64 64">
+                      <circle cx="32" cy="12" r="5" />
+                      <circle cx="14" cy="42" r="5" />
+                      <circle cx="50" cy="42" r="5" />
+                      <path d="M28 16 18 38M36 16l10 22M19 42h26" />
+                      <circle cx="32" cy="34" r="5" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col flex-1 items-center w-full">
+                    <h3 className="hr-flowchart-card-title">Synonym Map</h3>
+                    <p className="hr-flowchart-card-desc">Expands acronyms for deeper relevance.</p>
+                    <span className="hr-flowchart-card-badge">pto → vacation</span>
+                  </div>
+                </article>
+                {/* Connector: Down Arrow (Both Mobile & Desktop bridge to Row 2) */}
+                <div className="absolute -bottom-8 lg:-bottom-14 left-1/2 -translate-x-1/2 w-[2px] h-8 lg:h-14 z-0">
+                  <div className="w-full h-full connector-v animate-dash-v"></div>
+                  <div className="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-2 h-2 border-b-2 border-r-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="col-start-1 row-start-3 lg:col-start-4 lg:row-start-2 relative flex flex-col opacity-0 animate-fade-in-up stagger-5 z-10">
+                <article className="hr-flowchart-card group">
+                  <span className="absolute -top-2 left-2 lg:-top-3 lg:left-4 w-5 h-5 lg:w-7 h-7 rounded-full bg-gradient-to-br from-[#0a6a55] to-[#034c3c] text-white flex items-center justify-center font-extrabold shadow-[0_8px_20px_rgba(10,106,85,0.25)] text-[10px] lg:text-[13px] z-10">5</span>
+                  <div className="hr-flowchart-card-icon-wrapper">
+                    <svg className="w-4 h-4 lg:w-7 lg:h-7 text-[#0d8066] stroke-current stroke-[2.5] fill-none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 64 64">
+                      <path d="m32 8 20 11v26L32 56 12 45V19z" />
+                      <path d="m12 19 20 11 20-11M32 30v26" />
+                      <path d="m22 24 20-11" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col flex-1 items-center w-full">
+                    <h3 className="hr-flowchart-card-title">Index Config</h3>
+                    <p className="hr-flowchart-card-desc">System checks your search mode.</p>
+                    <span className="hr-flowchart-card-badge">Condition Check</span>
+                  </div>
+                </article>
+                {/* Connector Mobile: Right Arrow to Branch */}
+                <div className="lg:hidden absolute top-1/2 -right-6 w-6 h-[2px] z-0 -translate-y-1/2">
+                  <div className="w-full h-full connector-h animate-dash-h"></div>
+                  <div className="absolute right-[2px] top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+                {/* Connector Desktop: Left Arrow to Branch */}
+                <div className="hidden lg:block absolute top-1/2 -left-14 w-14 h-[2px] z-0 -translate-y-1/2">
+                  <div className="w-full h-full connector-h-rev animate-dash-h-rev"></div>
+                  <div className="absolute left-[2px] top-1/2 -translate-y-1/2 w-2 h-2 border-b-2 border-l-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+              </div>
+
+              {/* Step Branch (5A / 5B) */}
+              <div className="col-start-2 row-start-3 lg:col-start-3 lg:row-start-2 relative flex flex-col justify-center gap-2 lg:gap-3 opacity-0 animate-fade-in-up stagger-6 z-10">
+                {/* Branch 5A */}
+                <article className="hr-branch-card group">
+                  <span className="absolute top-0 left-2 px-1.5 py-[1px] bg-gradient-to-r from-[#0a6a55] to-[#034c3c] text-white text-[8px] lg:text-[9px] font-extrabold rounded-b-md shadow-sm z-10">5A</span>
+                  <div className="hr-branch-card-icon-wrapper">
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 fill-[#0d8066]" viewBox="0 0 64 64">
+                      <circle cx="16" cy="16" r="5" />
+                      <circle cx="32" cy="16" r="5" />
+                      <circle cx="48" cy="16" r="5" />
+                      <circle cx="16" cy="32" r="5" />
+                      <circle cx="32" cy="32" r="5" />
+                      <circle cx="48" cy="32" r="5" />
+                      <circle cx="16" cy="48" r="5" />
+                      <circle cx="32" cy="48" r="5" />
+                      <circle cx="48" cy="48" r="5" />
+                    </svg>
+                  </div>
+                  <h4 className="hr-branch-card-title">Vector WASM</h4>
+                  <span className="hr-branch-card-badge">all-MiniLM</span>
+                </article>
+
+                {/* Branch 5B */}
+                <article className="hr-branch-card group">
+                  <span className="absolute top-0 left-2 px-1.5 py-[1px] bg-gradient-to-r from-[#0a6a55] to-[#034c3c] text-white text-[8px] lg:text-[9px] font-extrabold rounded-b-md shadow-sm z-10">5B</span>
+                  <div className="hr-branch-card-icon-wrapper">
+                    <svg className="w-3 h-3 lg:w-4 lg:h-4 text-[#0d8066] stroke-current stroke-[2.5] fill-none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 64 64">
+                      <circle cx="27" cy="27" r="16" />
+                      <path d="m40 40 14 14" />
+                    </svg>
+                  </div>
+                  <h4 className="hr-branch-card-title">Keyword Index</h4>
+                  <span className="hr-branch-card-badge">MiniSearch</span>
+                </article>
+
+                {/* Connector Mobile: Down Bridge to Step 6 */}
+                <div className="lg:hidden absolute -bottom-8 left-1/2 -translate-x-1/2 w-[2px] h-8 z-0">
+                  <div className="w-full h-full connector-v animate-dash-v"></div>
+                  <div className="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-2 h-2 border-b-2 border-r-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+                {/* Connector Desktop: Left Arrow to Step 6 */}
+                <div className="hidden lg:block absolute top-1/2 -left-14 w-14 h-[2px] z-0 -translate-y-1/2">
+                  <div className="w-full h-full connector-h-rev animate-dash-h-rev"></div>
+                  <div className="absolute left-[2px] top-1/2 -translate-y-1/2 w-2 h-2 border-b-2 border-l-2 border-[#0a6a55] rotate-45"></div>
+                </div>
+              </div>
+
+              {/* Step 6 (Final) */}
+              <div className="col-start-2 row-start-4 lg:col-start-2 lg:row-start-2 relative flex flex-col opacity-0 animate-fade-in-up stagger-7 z-10">
+                <article className="hr-flowchart-card group">
+                  <span className="absolute -top-2 left-2 lg:-top-3 lg:left-4 w-5 h-5 lg:w-7 h-7 rounded-full bg-gradient-to-br from-[#0a6a55] to-[#034c3c] text-white flex items-center justify-center font-extrabold shadow-[0_8px_20px_rgba(10,106,85,0.25)] text-[10px] lg:text-[13px] z-10">6</span>
+                  <div className="hr-flowchart-card-icon-wrapper">
+                    <svg className="w-4 h-4 lg:w-7 lg:h-7 text-[#0d8066] stroke-current stroke-[2.5] fill-none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 64 64">
+                      <ellipse cx="32" cy="16" rx="17" ry="8" />
+                      <path d="M15 16v32c0 4.4 7.6 8 17 8s17-3.6 17-8V16" />
+                      <path d="M15 32c0 4.4 7.6 8 17 8s17-3.6 17-8" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col flex-1 items-center w-full">
+                    <h3 className="hr-flowchart-card-title">Store in DB</h3>
+                    <p className="hr-flowchart-card-desc">Securely writes embedding outputs.</p>
+                    <span className="hr-db-badge">Your Database</span>
+                  </div>
+                </article>
+                {/* Final Step: No outgoing arrows */}
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
