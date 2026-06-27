@@ -12,9 +12,9 @@ const SECTIONS = [
       <>
         <p>
           These Terms of Service (&ldquo;Terms&rdquo;) govern your use of HushRag, the
-          privacy-first RAG platform provided by Quantaura Design Tech (quantaura.in) (&ldquo;we&rdquo;, &ldquo;us&rdquo;,
-          &ldquo;our&rdquo;). By installing, configuring, or running HushRag, you agree to
-          these Terms.
+          privacy-first RAG platform developed by Quantaura Design Tech (quantaura.in) and
+          released as open-source software. By deploying, configuring, or running HushRag,
+          you agree to these Terms.
         </p>
         <p>
           If you are accepting these Terms on behalf of a company, you represent that you
@@ -26,25 +26,24 @@ const SECTIONS = [
   },
   {
     id: 'what-hushrag-is',
-    title: 'What HushRag is (and isn&apos;t)',
+    title: 'What HushRag is (and isn\u2019t)',
     body: (
       <>
         <p>
-          HushRag is a <strong>hosted service</strong> operated by Quantaura Design
-          Tech. You access it through the web dashboard or the chat widget — you do
-          not install anything. The service connects to a database{' '}
-          <strong>you</strong> choose and host (Turso, Supabase, MongoDB, Firestore,
-          or a local SQLite).
+          HushRag is an <strong>open-source, self-hosted application</strong>. You
+          clone the repository, run it on your own infrastructure, and connect it to a
+          database <strong>you</strong> choose and host (Turso, Supabase, MongoDB,
+          Firestore, or a local SQLite).
         </p>
         <p>
-          Sign-in is handled by <strong>Firebase Authentication</strong> (a
-          Google-managed service). Firebase holds your email, password hash, and a
-          user ID. Quantaura Design Tech does not see those.
+          Authentication is handled entirely within your HushRag instance using
+          <strong> PBKDF2</strong> password hashing and <strong>JWT</strong> session
+          tokens. No third-party authentication service is required.
         </p>
         <p>
-          We do not see your documents, embeddings, chat history, or audit logs
-          unless you explicitly share them with us. Your data stays in the database
-          you configured.
+          Because you self-host, Quantaura Design Tech does not see your documents,
+          embeddings, chat history, audit logs, or user credentials. Your data stays
+          in the database you configured, on your infrastructure.
         </p>
       </>
     ),
@@ -55,16 +54,24 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          HushRag is proprietary software owned by Quantaura Design Tech. The source
-          code is not redistributed. We grant you a non-exclusive, non-transferable
-          right to use the HushRag service through the interfaces we provide (the web
-          dashboard, the chat widget, and the connected channels) for the purpose of
-          building an internal RAG assistant over your own data.
+          HushRag is licensed under the{' '}
+          <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">
+            <strong>GNU Affero General Public License v3.0 (AGPL-3.0)</strong>
+          </a>. The full source code is available at{' '}
+          <a href="https://github.com/Quantaura-Design-Tech/HushRag" target="_blank" rel="noopener">
+            github.com/Quantaura-Design-Tech/HushRag
+          </a>.
         </p>
         <p>
-          You may not reverse engineer, decompile, resell, or attempt to extract the
-          source code of HushRag. You may not use the service to build a directly
-          competing product.
+          Under AGPL-3.0, you are free to use, study, modify, and redistribute
+          HushRag, including for commercial use. If you modify HushRag and make it
+          available over a network (e.g. host it for others to use), you must make
+          the modified source code available under the same license.
+        </p>
+        <p>
+          HushRag is also distributed with optional components and integrations
+          (Firebase admin SDK, Twilio, Telegram bot libraries) that are subject to
+          their own licenses. The AGPL-3.0 applies to the HushRag source code itself.
         </p>
       </>
     ),
@@ -76,12 +83,13 @@ const SECTIONS = [
       <>
         <p>You are responsible for:</p>
         <ul>
-          <li>Keeping your sign-in credentials secret.</li>
+          <li>Keeping your sign-in credentials and server environment variables secret (including <code>JWT_SECRET</code> and <code>ENCRYPTION_KEY</code>).</li>
           <li>Configuring access controls and password hygiene for your workspace users.</li>
           <li>Choosing and securing the database that stores your workspace data.</li>
           <li>Choosing and securing the LLM provider, Pinecone, Twilio, and Telegram accounts you connect.</li>
           <li>The content you upload and the answers your employees receive.</li>
           <li>Complying with privacy, employment, and sector-specific laws that apply to your use.</li>
+          <li>Keeping your HushRag deployment up to date with security patches.</li>
         </ul>
       </>
     ),
@@ -95,10 +103,9 @@ const SECTIONS = [
         <ul>
           <li>Use HushRag to process content you do not have the right to use.</li>
           <li>Use HushRag to harass, defame, or harm others.</li>
-          <li>Reverse engineer, decompile, or attempt to extract the source code of HushRag.</li>
-          <li>Probe, scan, or attempt to disrupt the service.</li>
-          <li>Use HushRag to build a directly competing product.</li>
+          <li>Probe, scan, or attempt to disrupt a HushRag instance you do not own.</li>
           <li>Violate the terms of any third party you connect (LLM provider, Pinecone, Twilio, Telegram, your database host).</li>
+          <li>Remove or alter license attributions in the source code when redistributing.</li>
         </ul>
       </>
     ),
@@ -109,13 +116,16 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          We may release updates, security patches, and new features from time to time.
-          Because HushRag is a hosted service, these are applied on our side — you
-          do not need to deploy anything.
+          The HushRag project is maintained by Quantaura Design Tech and the open-source
+          community. Updates, security patches, and new features are published to the
+          GitHub repository. Because you self-host, you are responsible for pulling
+          updates and deploying them to your instance.
         </p>
         <p>
-          Support channels, response times, and any paid support tiers will be
-          described on our website or in a separate order form.
+          Community support is available through{' '}
+          <a href="https://github.com/Quantaura-Design-Tech/HushRag/issues" target="_blank" rel="noopener">
+            GitHub Issues
+          </a>. Commercial support, if offered, will be described separately.
         </p>
       </>
     ),
@@ -126,13 +136,13 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          HushRag is currently free to use. If we ever offer paid plans (managed
-          hosting, premium support, enterprise features), pricing will be posted on
-          our website and governed by a separate order form.
+          HushRag is free and open-source software. There are no fees charged by
+          Quantaura Design Tech for using HushRag.
         </p>
         <p>
-          You are still responsible for fees charged by third parties you connect
-          (LLM provider, Pinecone, Twilio, Telegram, your own database host).
+          You are responsible for any fees charged by third parties you connect
+          (LLM provider, Pinecone, Twilio, Telegram, your database host, or your
+          hosting provider).
         </p>
       </>
     ),
@@ -144,14 +154,17 @@ const SECTIONS = [
       <>
         <p>
           You retain all rights to the documents, embeddings, and chat history stored
-          in the database you connect to HushRag. We claim no ownership of that data.
+          in the database you connect to HushRag. Quantaura Design Tech claims no
+          ownership of that data.
         </p>
         <p>
-          The HushRag service is hosted by Quantaura Design Tech, but the encrypted
-          credentials needed to read your data never leave your browser. We do not
-          have a way to decrypt and read your workspace data. If you voluntarily send
-          data to us (e.g. by emailing a support question with logs attached), you
-          grant us a limited license to use it solely to resolve your support request.
+          Because HushRag is self-hosted, the encrypted credentials needed to read
+          your data are stored on your server, encrypted with a key you control via
+          the <code>ENCRYPTION_KEY</code> environment variable. Quantaura Design Tech
+          has no access to your server, your database, or your encryption key. If you
+          voluntarily share data with the project (e.g. by filing a GitHub issue with
+          logs attached), you grant a limited license to use it solely to resolve
+          your request.
         </p>
       </>
     ),
@@ -163,13 +176,13 @@ const SECTIONS = [
       <>
         <p>
           You may stop using HushRag at any time. Disconnect your database, delete
-          your workspace, or simply stop signing in. Your data remains in the
-          database you chose — we do not need to &ldquo;delete&rdquo; anything on
-          our end because the data is yours, not ours.
+          your workspace, shut down the server, or simply stop running the
+          application. Your data remains in the database you chose — it was always
+          yours.
         </p>
         <p>
-          We may suspend or terminate access if you breach these Terms. If you have a
-          paid plan with us, termination terms are in the applicable order form.
+          Because HushRag is self-hosted, there is no account to &ldquo;delete on our
+          end.&rdquo; Removing user accounts is done directly in your database.
         </p>
       </>
     ),
@@ -186,9 +199,9 @@ const SECTIONS = [
           purpose, and non-infringement.
         </p>
         <p>
-          We do not warrant that the software will be uninterrupted, secure, or
-          error-free, or that answers generated by your configured LLM will be accurate,
-          safe, or suitable for any particular purpose.
+          Quantaura Design Tech does not warrant that the software will be uninterrupted,
+          secure, or error-free, or that answers generated by your configured LLM will
+          be accurate, safe, or suitable for any particular purpose.
         </p>
       </>
     ),
@@ -199,10 +212,11 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          To the maximum extent permitted by law, our total liability arising out of or
-          relating to these Terms will not exceed the greater of (a) the fees you paid
-          us in the 12 months before the claim, or (b) USD $100. We will not be liable
-          for indirect, incidental, special, consequential, or punitive damages.
+          To the maximum extent permitted by law, the total liability of Quantaura
+          Design Tech and its contributors arising out of or relating to these Terms
+          or the HushRag software will not exceed USD $100. Neither Quantaura Design
+          Tech nor any contributor will be liable for indirect, incidental, special,
+          consequential, or punitive damages.
         </p>
       </>
     ),
@@ -213,9 +227,9 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          We may update these Terms. Material changes will be reflected in the
-          &ldquo;Last updated&rdquo; date below and announced in the project&apos;s release
-          notes. Continued use of new releases after the change constitutes acceptance.
+          These Terms may be updated. Material changes will be reflected in the
+          &ldquo;Last updated&rdquo; date below and announced in the GitHub repository.
+          Continued use of HushRag after the change constitutes acceptance.
         </p>
       </>
     ),

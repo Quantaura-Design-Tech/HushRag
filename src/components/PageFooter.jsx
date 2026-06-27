@@ -10,7 +10,6 @@ const FOOTER_COLUMNS = [
       { label: 'Features', href: '#features' },
       { label: 'How It Works', href: '#how-it-works' },
       { label: 'Integrations', href: '#integrations' },
-      { label: 'Playground', href: '/widget' },
     ],
   },
   {
@@ -26,8 +25,7 @@ const FOOTER_COLUMNS = [
     title: 'Company',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Contact', href: '#' },
-      { label: 'Careers', href: '#' },
+      { label: 'Contact', href: 'mailto:contact@quantaura.in' },
     ],
   },
   {
@@ -35,7 +33,7 @@ const FOOTER_COLUMNS = [
     links: [
       { label: 'Privacy', href: '/privacy' },
       { label: 'Terms', href: '/terms' },
-      { label: 'Contact', href: 'mailto:contact@quantaura.in' },
+      { label: 'GitHub', href: 'https://github.com/Quantaura-Design-Tech/HushRag' },
     ],
   },
 ];

@@ -15,7 +15,8 @@ function hashPassword(password, salt) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { action, email, password, orgName } = body;
+    const { action, password, orgName } = body;
+    const email = body.email ? body.email.trim().toLowerCase() : '';
 
     if (!email || !password) {
       return NextResponse.json({ error: 'Email and password are required.' }, { status: 400 });

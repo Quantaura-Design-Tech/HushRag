@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 export default function WidgetPage() {
   const [orgId, setOrgId] = useState('');
   const [locked, setLocked] = useState(null); // null = checking access, true = locked, false = unlocked
+  const [noOrg, setNoOrg] = useState(false); // true = no org parameter provided
   const [passcode, setPasscode] = useState('');
   const [lockedError, setLockedError] = useState('');
   const [channel, setChannel] = useState('web-widget');
@@ -48,7 +49,7 @@ export default function WidgetPage() {
         checkAccess(org, passQuery, false);
       }
     } else {
-      setLocked(true);
+      setNoOrg(true);
     }
   }, []);
 
@@ -260,6 +261,44 @@ export default function WidgetPage() {
   const handleClose = () => {
     window.parent.postMessage('sp-close-chat', '*');
   };
+
+  if (noOrg) {
+    return (
+      <div className="widget-container" style={{ display: 'flex', flexDirection: 'column', position: 'fixed', inset: 0, overflow: 'hidden' }}>
+        <div className="widget-header" style={{ flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <span className="pulse-indicator" style={{ backgroundColor: 'var(--warning)' }}></span>
+            <div>
+              <h4 style={{ margin: 0, fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>Policy Assistant</h4>
+              <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)' }}>Secure • Powered by HushRag</span>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '0.35rem' }}>
+            <button onClick={handleClose} className="widget-header-btn" title="Close Widget" style={{ fontSize: '1.1rem', padding: '0.2rem 0.4rem' }}>
+              ✖
+            </button>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center', padding: '1rem', backgroundColor: 'var(--bg-sidebar)' }}>
+          <Card className="widget-locked-card" style={{ border: '1px solid var(--border-color)', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+            <CardContent style={{ padding: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ fontSize: '2rem' }}>🔗</div>
+              <div>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.35rem' }}>No Organization Linked</h3>
+                <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                  This widget needs to be opened from your HushRag dashboard. Please sign in and use the widget link from the dashboard.
+                </p>
+              </div>
+              <a href="/login" style={{ display: 'inline-block', textAlign: 'center', fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)', textDecoration: 'none' }}>
+                Go to sign in →
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
 
   if (locked === null) {
     return (

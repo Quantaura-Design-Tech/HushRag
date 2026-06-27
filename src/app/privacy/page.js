@@ -11,11 +11,11 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          HushRag is a <strong>hosted service</strong> operated by Quantaura Design
-          Tech (quantaura.in). You access it through our web dashboard or the chat
-          widget — you do not install anything. The only piece that runs outside our
-          infrastructure is sign-in, which uses Firebase Authentication (a
-          Google-managed service).
+          HushRag is an <strong>open-source, self-hosted</strong> application released
+          under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">GNU Affero General Public License v3.0</a>.
+          You run it on your own infrastructure — there is no cloud service operated by
+          Quantaura Design Tech. Authentication, document storage, and embeddings all run
+          on the machine where you deploy HushRag.
         </p>
         <p>
           This page explains where each piece of data lives, who can see it, and what
@@ -31,22 +31,19 @@ const SECTIONS = [
       <>
         <p>There are three pieces of state in the system. Each lives somewhere different.</p>
 
-        <h3>1. Sign-in (Firebase Authentication — managed by Google)</h3>
+        <h3>1. Sign-in credentials (your server)</h3>
         <p>
-          Email/password sign-in is handled by <strong>Firebase Authentication</strong>.
-          Google holds the email, the hashed password, and the Firebase user ID (UID).
-          HushRag does not store passwords, password hashes, or any user credentials
-          of its own.
-        </p>
-        <p>
-          When a user signs in, HushRag receives a signed Firebase ID token, verifies it,
-          and uses the Firebase UID to identify the workspace. No profile data is copied
-          into HushRag&apos;s own storage.
+          Email and password sign-in is handled entirely by the HushRag instance you
+          run. Passwords are hashed using <strong>PBKDF2</strong> (1000 iterations,
+          SHA-512) with a per-user salt, and session tokens are signed with JWT.
+          Neither Quantaura Design Tech nor any third party has access to your
+          sign-in data — it lives in the database on your server.
         </p>
 
-        <h3>2. Workspace settings (our infrastructure, encrypted)</h3>
+        <h3>2. Workspace settings (your server, encrypted)</h3>
         <p>
-          Our service stores the configuration needed to operate each workspace:
+          Your HushRag instance stores the configuration needed to operate each
+          workspace:
         </p>
         <ul>
           <li>Which database each workspace uses, and the encrypted credentials to reach it.</li>
@@ -54,17 +51,16 @@ const SECTIONS = [
           <li>Workspace name and settings.</li>
         </ul>
         <p>
-          These are encrypted with AES-256-GCM at rest in our database. Even though
-          we store them, we do not have a way to decrypt and read them: the
-          encryption key is derived from a passphrase you set, and the passphrase
-          lives in your browser, not on our servers. Quantaura Design Tech cannot
-          read your credentials.
+          These are encrypted with <strong>AES-256-GCM</strong> at rest in your
+          database. The encryption key is derived from a server-side environment
+          variable (<code>ENCRYPTION_KEY</code>) that you control. Quantaura Design
+          Tech has no access to your server, your database, or your encryption key.
         </p>
 
         <h3>3. Workspace data (your database)</h3>
         <p>
-          Every workspace has a tenant database that <strong>you</strong> choose and host.
-          Options include local SQLite, Turso, Supabase (Postgres), MongoDB Atlas, or
+          Every workspace has a tenant database that <strong>you</strong> choose and
+          host. Options include local SQLite, Turso, Supabase (Postgres), MongoDB, or
           Firestore. This database holds the actual content:
         </p>
         <ul>
@@ -74,8 +70,8 @@ const SECTIONS = [
           <li>Pinecone vector IDs (when Pinecone is enabled)</li>
         </ul>
         <p>
-          HushRag, Inc. — sorry, <strong>Quantaura Design Tech</strong> — has no access
-          to this database. Not by default, not via a backdoor, not via a side channel.
+          Because you self-host HushRag, Quantaura Design Tech has no access to this
+          database. Not by default, not via a backdoor, not via a side channel.
         </p>
       </>
     ),
@@ -86,18 +82,21 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          Unless you explicitly send it to us: <strong>nothing about your documents,
-          embeddings, or chat history.</strong>
+          Because HushRag is self-hosted and open source: <strong>nothing about your
+          documents, embeddings, chat history, or user accounts is visible to
+          Quantaura Design Tech.</strong>
         </p>
-        <p>We can see:</p>
+        <p>
+          The only data Quantaura Design Tech may see is:
+        </p>
         <ul>
-          <li>Anything you email us, file in a support ticket, or post in a public channel.</li>
-          <li>Aggregated install / version telemetry if you opt in.</li>
+          <li>Anything you voluntarily send via email, GitHub issues, or pull requests.</li>
+          <li>Public contributions to the open-source repository.</li>
         </ul>
         <p>
           We do <strong>not</strong> see your documents, your embeddings, your chat
-          history, your audit logs, your database, your LLM traffic, or your Firebase
-          password (Google holds that).
+          history, your audit logs, your database, your LLM traffic, or your user
+          credentials. Everything runs on your infrastructure.
         </p>
       </>
     ),
@@ -128,26 +127,19 @@ const SECTIONS = [
     title: 'Third-party services',
     body: (
       <>
-        <p>Two services are always in the loop. The rest are optional.</p>
-        <h3>Always on</h3>
-        <ul>
-          <li>
-            <strong>Firebase Authentication (Google)</strong> — handles sign-in and
-            sign-up. Google holds the email, hashed password, and Firebase UID for each
-            user. Google&apos;s privacy policy applies to that data.
-          </li>
-        </ul>
+        <p>All third-party services in HushRag are optional. None are required.</p>
         <h3>Optional</h3>
         <ul>
-          <li><strong>Your LLM provider</strong> — receives the question and matched chunks at query time.</li>
-          <li><strong>Pinecone</strong> (optional) — stores vectors if you enable it. We never see your Pinecone key in plaintext.</li>
-          <li><strong>Twilio</strong> (optional) — delivers WhatsApp messages to and from your employees.</li>
-          <li><strong>Telegram</strong> (optional) — routes Telegram bot messages to your employees.</li>
+          <li><strong>Your LLM provider</strong> — receives the question and matched chunks at query time. Configured per workspace.</li>
+          <li><strong>Pinecone</strong> — stores vectors if you enable it. Credentials are encrypted at rest.</li>
+          <li><strong>Twilio</strong> — delivers WhatsApp messages to and from your employees.</li>
+          <li><strong>Telegram</strong> — routes Telegram bot messages to your employees.</li>
+          <li><strong>Firebase / Firestore</strong> — optional BYODB database driver. Only used if you explicitly configure it.</li>
         </ul>
         <p>
-          Each has its own data processing terms. Disabling a feature in HushRag stops new
-          data from going to that third party. To remove Firebase Auth, you would need
-          to remove HushRag (there is no other sign-in path).
+          Each has its own data processing terms. Disabling a feature in HushRag stops
+          new data from going to that third party. Because you self-host, you have full
+          control over which integrations are enabled.
         </p>
       </>
     ),
@@ -158,9 +150,10 @@ const SECTIONS = [
     body: (
       <>
         <p>
-          The HushRag dashboard stores a single JWT in <code>localStorage</code> to keep
-          you signed in. We do not set tracking cookies. We do not run third-party
-          analytics scripts.
+          The HushRag dashboard stores a JWT in <code>localStorage</code> to keep
+          you signed in. No tracking cookies are set. No third-party analytics scripts
+          are loaded. Because you self-host, you have full visibility into all
+          client-side and server-side code.
         </p>
       </>
     ),
@@ -173,14 +166,13 @@ const SECTIONS = [
         <p>
           Your workspace data lives in the database you chose, so its retention is
           governed by <strong>your</strong> database and <strong>your</strong>{' '}
-          hosting, not by Quantaura Design Tech. As a default the dashboard purges
-          chat audit metadata after 7 days. You can change that interval, change
+          hosting, not by Quantaura Design Tech. As a default, HushRag purges chat
+          audit metadata after 7 days. You can change that interval, change
           your database, or wipe the database at any time.
         </p>
         <p>
-          Your sign-in identity is held by Firebase under their retention policies.
-          To request deletion of your Firebase account, follow Google&apos;s account
-          deletion process.
+          User accounts and password hashes live in your database. To delete a user,
+          remove the record from the <code>users</code> table or drop the database.
         </p>
       </>
     ),
@@ -195,8 +187,8 @@ const SECTIONS = [
           <li>Rotate or delete the encrypted credentials in your workspace settings.</li>
           <li>Point HushRag at a different tenant database.</li>
           <li>Wipe or delete the tenant database — this is your data, in your database.</li>
-          <li>Stop using the service. Your data remains in your database; we have no copy to delete.</li>
-          <li>Delete your Firebase account, which removes your sign-in identity held by Google. (This is done from the dashboard or directly with Firebase.)</li>
+          <li>Stop using the service. Your data remains in your database.</li>
+          <li>Delete user accounts directly from your database, or drop the database entirely.</li>
         </ul>
         <p>
           For anything that requires us, email{' '}
