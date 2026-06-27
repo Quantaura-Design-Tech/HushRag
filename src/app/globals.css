@@ -22,17 +22,17 @@
   /* Borders and Focus States */
   --border-color: #e4e4e7;
   --border-hover: #d4d4d8;
-  --border-focus: #09090b;
+  --border-focus: #00684f;
 
   /* Neutral Typography Tones */
   --text-primary: #09090b;
   --text-secondary: #27272a;
   --text-muted: #52525b;
 
-  /* Shadcn Dark Zinc Accents */
-  --accent-color: #09090b;
-  --accent-hover: #27272a;
-  --accent-glow: #f4f4f5;
+  /* Brand Green Accents */
+  --accent-color: #00684f;
+  --accent-hover: #004D3D;
+  --accent-glow: #f3fbf8;
 
   /* Semantic Badges */
   --success: #10b981;
@@ -1782,8 +1782,9 @@ pre code {
 .hr-page {
   --hr-ink: #071617;
   --hr-muted: #3d5253;
+  --hr-green-primary: #00A86B;
   --hr-green: #00684f;
-  --hr-green-dark: #004d3f;
+  --hr-green-dark: #004D3D;
   --hr-green-soft: #eaf6f2;
   --hr-mint: #f3fbf8;
   --hr-line: #dbe9e5;
@@ -1835,42 +1836,8 @@ pre code {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-}
-
-.hr-brand {
   color: var(--hr-ink);
   text-decoration: none;
-  font-size: 1.33rem;
-  font-weight: 800;
-}
-
-.hr-mark {
-  width: 23px;
-  height: 27px;
-  position: relative;
-  display: inline-grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
-  flex: 0 0 auto;
-}
-
-.hr-mark span {
-  display: block;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #00916f, #005342);
-}
-
-.hr-mark span:first-child {
-  grid-row: 1 / 3;
-}
-
-.hr-mark span:nth-child(2) {
-  height: 12px;
-}
-
-.hr-mark span:nth-child(3) {
-  height: 15px;
-  align-self: end;
 }
 
 .hr-navlinks {
@@ -3002,13 +2969,8 @@ a.hr-btn-link {
     padding: 0 1rem;
   }
 
-  .hr-brand {
-    font-size: 1.15rem;
-  }
-
-  .hr-mark {
-    width: 20px;
-    height: 24px;
+  .hr-brand svg {
+    height: 1.6rem;
   }
 
   .hr-nav-actions {

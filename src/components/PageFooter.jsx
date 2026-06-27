@@ -1,7 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { ArrowRight, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import HushRagLogo from '@/components/HushRagLogo';
 
 const FOOTER_COLUMNS = [
   {
@@ -37,16 +39,6 @@ const FOOTER_COLUMNS = [
     ],
   },
 ];
-
-function HushRagMark() {
-  return (
-    <span className="hr-mark" aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
-  );
-}
 
 export default function PageFooter() {
   const openAuth = () => {
@@ -84,10 +76,9 @@ export default function PageFooter() {
 
       <footer className="hr-footer-section">
         <div className="hr-footer-top">
-          <a className="hr-brand" href="#" aria-label="HushRag home">
-            <HushRagMark />
-            <span>HushRag</span>
-          </a>
+          <Link className="hr-brand" href="/" aria-label="HushRag home">
+            <HushRagLogo />
+          </Link>
         </div>
 
         <div className="hr-footer-grid">

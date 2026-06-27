@@ -1,17 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-
-function HushRagMark() {
-  return (
-    <span className="hr-mark" aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
-  );
-}
+import HushRagLogo from '@/components/HushRagLogo';
 
 const navItems = [
   { label: 'Features', href: '/#features' },
@@ -37,27 +29,26 @@ export default function SiteHeader({ activePath = '/' }) {
   return (
     <header className="hr-nav-shell" aria-label="Primary navigation">
       <div className="hr-nav">
-        <a className="hr-brand" href="/" aria-label="HushRag home">
-          <HushRagMark />
-          <span>HushRag</span>
-        </a>
+        <Link className="hr-brand" href="/" aria-label="HushRag home">
+          <HushRagLogo />
+        </Link>
 
         <nav className="hr-navlinks">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
               className={activePath === item.href.split('#')[0] && item.label === 'About' ? 'is-active' : ''}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hr-nav-actions">
-          <a className="hr-nav-signin" href="/login">
+          <Link className="hr-nav-signin" href="/login">
             Sign in
-          </a>
+          </Link>
           <Button className="hr-btn hr-btn-primary" type="button" onClick={() => openAuth(true)}>
             Get Started
           </Button>

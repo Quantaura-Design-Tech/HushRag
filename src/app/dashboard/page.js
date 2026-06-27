@@ -13,8 +13,10 @@ import { splitMarkdownIntoChunks, buildSearchIndex, searchIndex } from '@/lib/cl
 import { generateEmbeddings, generateQueryEmbedding } from '@/lib/embeddings-client';
 import { parseMarkdown } from '@/lib/markdown';
 
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import HushRagLogo from '@/components/HushRagLogo';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
@@ -759,14 +761,9 @@ export default function DashboardPage() {
   return (
     <div className="hr-dash">
       <header className="hr-dash-topbar">
-        <a className="hr-brand" href="/">
-          <span className="hr-mark" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span>HushRag</span>
-        </a>
+        <Link className="hr-brand" href="/">
+          <HushRagLogo />
+        </Link>
         <div className="hr-dash-topbar-right">
           <span className="hr-dash-workspace">
             <span className="hr-dash-workspace-dot" />

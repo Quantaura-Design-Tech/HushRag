@@ -1,19 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import HushRagLogo from '@/components/HushRagLogo';
 import { Lock, ArrowLeft, ShieldCheck, Database, Zap, Eye, EyeOff } from 'lucide-react';
-
-function HushRagMark() {
-  return (
-    <span className="hr-mark" aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
-  );
-}
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -81,10 +73,9 @@ export default function LoginPage() {
         
         {/* Left Pane - Brand Info */}
         <div className="auth-brand-pane">
-          <a className="hr-brand" href="/" aria-label="HushRag home" style={{ display: 'inline-flex', alignSelf: 'flex-start', marginBottom: '1rem' }}>
-            <HushRagMark />
-            <span style={{ fontSize: '1.25rem', fontWeight: 800 }}>HushRag</span>
-          </a>
+          <Link className="hr-brand" href="/" aria-label="HushRag home" style={{ display: 'inline-flex', alignSelf: 'flex-start', marginBottom: '1rem' }}>
+            <HushRagLogo style={{ height: '2rem' }} />
+          </Link>
 
           <h1 className="auth-brand-title">
             Private AI support,<br />
@@ -115,9 +106,9 @@ export default function LoginPage() {
           </div>
 
           <div style={{ marginTop: '2rem' }}>
-            <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#607070', fontSize: '0.85rem', textDecoration: 'none', fontWeight: 600 }}>
+            <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#607070', fontSize: '0.85rem', textDecoration: 'none', fontWeight: 600 }}>
               <ArrowLeft size={16} /> Back to homepage
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -126,7 +117,7 @@ export default function LoginPage() {
           <div className="auth-card hr-auth-modal" style={{ border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}>
             
             <div className="hr-auth-header">
-              <HushRagMark />
+              <HushRagLogo variant="icon" />
               <h2>{isLogin ? 'Sign In to HushRag' : 'Create Admin Account'}</h2>
               <p>{isLogin ? 'Manage your private policy assistant.' : 'Set up your zero-knowledge workspace.'}</p>
             </div>

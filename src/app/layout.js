@@ -1,8 +1,13 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "HushRag - E2EE Employee Policy Bot Platform",
-  description: "Secure, zero-knowledge RAG chat bot platform for corporate policies, benefits, and support guidelines.",
+  title: "HushRag - Private RAG for Your Documents",
+  description: "Self-hosted, zero-knowledge RAG platform. Connect your own database, keep your data yours.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/images/logo-icon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
