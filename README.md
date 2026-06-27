@@ -8,7 +8,7 @@
 ![SQLite](https://img.shields.io/badge/SQLite-3.0-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Security](https://img.shields.io/badge/Security-Zero--Knowledge-green?style=for-the-badge)
-[![License: Custom NC-ND](https://img.shields.io/badge/License-Custom_NC--ND-orange.svg?style=for-the-badge)](file:///Users/harildixit/Documents/RAG-bot/LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
 
 **Secure, Client-Side Zero-Knowledge RAG Corporate Policy Assistant & Platform.**
 *Enterprise-grade security meets lightning-fast local RAG chat. Upload company handbooks, support guidelines, and operating procedures, and let employees query them securely.*
@@ -214,17 +214,24 @@ Below is the layout of files and folders inside the repository showing the purpo
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/yourorg/rag-bot.git
-cd rag-bot
+git clone https://github.com/Quantaura-Design-Tech/HushRag.git
+cd hushrag
 npm install
 ```
 
 ### 2. Environment Variables
-Create a `.env` file in the root directory:
-```env
-LOCAL_MODE=true
-# Set to true to bypass organization credentials and run off local SQLite database.sqlite
+Copy the example env file and fill in the values:
+```bash
+cp .env.example .env
 ```
+
+Key variables:
+| Variable | Description | Required |
+| :--- | :--- | :--- |
+| `LOCAL_MODE` | Set to `true` to use the local SQLite database for development. | Development |
+| `ENCRYPTION_KEY` | Strong random key used to encrypt stored credentials (AES-256-GCM). | Production |
+| `JWT_SECRET` | Strong random key used to sign admin session tokens. | Production |
+| `ENABLE_CLEANUP` | Set to `false` to disable automatic 7-day chat transcript purge. | Optional |
 
 ### 3. Run Development Server
 ```bash
@@ -311,13 +318,33 @@ All organization metadata, categories, handbooks, and transcripts are stored in 
 
 ---
 
-## 📄 License
+## ⚖️ License
 
-This project is owned and developed by **Quantaura Design Tech Pvt. Ltd.**
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+
+This means:
+- ✅ You may use, modify, and distribute this software freely.
+- ✅ You may use it commercially.
+- ⚠️ If you modify and deploy it over a network, you **must** make your modified source code available to users.
+- ⚠️ Derivative works must also be licensed under AGPL-3.0.
+
+See the full [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get started.
+
+By participating in this project, you agree to abide by the [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+---
+
+## 📬 Contact
+
 * **Website:** [quantaura.in](https://quantaura.in)
-* **Contact:** contact@quantaura.in
-
-This project is licensed under a Custom Non-Commercial No-Derivatives License - see the [LICENSE](file:///Users/harildixit/Documents/RAG-bot/LICENSE) file for details.
+* **Email:** contact@quantaura.in
+* **Issues:** [GitHub Issues](https://github.com/Quantaura-Design-Tech/HushRag/issues)
 
 
 

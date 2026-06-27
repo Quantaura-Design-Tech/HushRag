@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & Discussions
+    url: https://github.com/Quantaura-Design-Tech/HushRag/discussions
+    about: Ask questions, share ideas, and discuss HushRag with the community.
+  - name: Security Vulnerabilities
+    url: mailto:contact@quantaura.in
+    about: Please report security vulnerabilities privately via email.

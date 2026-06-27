@@ -1,4 +1,4 @@
-import { getDb } from './index';
+import { getDb } from './db/index';
 
 /**
  * Prunes expired chat sessions for all organizations.

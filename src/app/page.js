@@ -24,8 +24,9 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
-const navItems = ['Features', 'How It Works', 'Integrations', 'Security', 'Pricing', 'Docs'];
+import HowItWorks from '@/components/HowItWorks';
+import PageFooter from '@/components/PageFooter';
+import SiteHeader from '@/components/SiteHeader';
 
 
 
@@ -47,8 +48,8 @@ const featureCards = [
   },
   {
     icon: ShieldCheck,
-    title: 'Enterprise Security',
-    body: 'AES-256 encryption, end-to-end.',
+    title: 'Encryption at Rest',
+    body: 'AES-256 encryption for keys and content.',
   },
   {
     icon: MessageSquare,
@@ -58,7 +59,7 @@ const featureCards = [
   {
     icon: BarChart3,
     title: 'Audit & Logs',
-    body: '7-day chat logs for audit and compliance.',
+    body: '7-day chat logs for audit and review. Auto-purged.',
   },
 ];
 
@@ -91,7 +92,7 @@ const detailedFeatures = [
   {
     icon: FileText,
     title: 'Audit & Chat Logs',
-    body: '7-day chat logs for audit or review. Auto-purged.',
+    body: '7-day chat logs for audit and review. Auto-purged.',
   },
   {
     icon: KeyRound,
@@ -110,20 +111,10 @@ const detailedFeatures = [
   },
   {
     icon: ShieldCheck,
-    title: 'Enterprise Security',
-    body: 'AES-256 encryption end-to-end. Built for compliance.',
+    title: 'AES-256 Encryption',
+    body: 'Keys and content encrypted at rest with AES-256-GCM.',
   },
 ];
-
-function HushRagMark() {
-  return (
-    <span className="hr-mark" aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
-  );
-}
 
 export default function LandingAndAuthPage() {
   useEffect(() => {
@@ -133,43 +124,16 @@ export default function LandingAndAuthPage() {
     }
   }, []);
 
-  const openAuth = (loginMode) => {
-    if (loginMode) {
-      window.location.href = '/login';
-    } else {
-      window.location.href = '/login?signup=true';
-    }
+  const openAuth = () => {
+    window.location.href = '/login?signup=true';
   };
 
   return (
     <main className="hr-page">
 
+      <SiteHeader activePath="/" />
 
-      <header className="hr-nav" aria-label="Primary navigation">
-        <a className="hr-brand" href="#" aria-label="HushRag home">
-          <HushRagMark />
-          <span>HushRag</span>
-        </a>
-
-        <nav className="hr-navlinks">
-          {navItems.map((item) => (
-            <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`}>
-              {item}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hr-nav-actions">
-          <Button className="hr-btn hr-btn-outline" type="button" onClick={() => openAuth(true)}>
-            Book a Demo
-          </Button>
-          <Button className="hr-btn hr-btn-primary" type="button" onClick={() => openAuth(false)}>
-            Start Free Trial
-          </Button>
-        </div>
-      </header>
-
-      <section className="hr-hero" id="how-it-works">
+      <section className="hr-hero">
         <div className="hr-hero-copy">
           <div className="hr-eyebrow">
             <Lock size={14} />
@@ -190,12 +154,12 @@ export default function LandingAndAuthPage() {
           </p>
 
           <div className="hr-hero-actions">
-            <Button className="hr-btn hr-btn-primary hr-btn-large" type="button" onClick={() => openAuth(false)}>
-              Start Free Trial <ArrowRight size={18} />
+            <Button className="hr-btn hr-btn-primary hr-btn-large" type="button" onClick={openAuth}>
+              Get Started <ArrowRight size={18} />
             </Button>
-            <Button className="hr-btn hr-btn-outline hr-btn-large" type="button" onClick={() => openAuth(true)}>
-              Try in Playground
-            </Button>
+            <a className="hr-btn hr-btn-outline hr-btn-large hr-btn-link" href="/widget">
+              Open Playground
+            </a>
           </div>
         </div>
 
@@ -213,7 +177,7 @@ export default function LandingAndAuthPage() {
       </section>
 
       <section className="hr-features" id="features">
-        <div className="hr-section-inner" id="security">
+        <div className="hr-section-inner">
           <h2>Built for security. Designed for teams.</h2>
 
           <div className="hr-feature-grid">
@@ -245,9 +209,9 @@ export default function LandingAndAuthPage() {
 
 
             <div className="hr-everything-trust">
-              <span><ShieldCheck size={14} /> No credit card required</span>
+              <span><ShieldCheck size={14} /> Self-hosted</span>
               <span><ShieldCheck size={14} /> Setup in minutes</span>
-              <span><ShieldCheck size={14} /> Cancel anytime</span>
+              <span><ShieldCheck size={14} /> Always free</span>
             </div>
           </div>
 
@@ -264,7 +228,7 @@ export default function LandingAndAuthPage() {
       </section>
 
       {/* Detailed Features Grid */}
-      <section className="hr-detailed-features" id="pricing">
+      <section className="hr-detailed-features">
         <div className="hr-section-inner">
           <div className="hr-detailed-grid">
             {detailedFeatures.map(({ icon: Icon, title, body }) => (
@@ -292,15 +256,12 @@ export default function LandingAndAuthPage() {
             </div>
             <div>
               <h2>Ready to secure your team&apos;s knowledge?</h2>
-              <p>Start in minutes. No credit card required.</p>
+              <p>Self-hosted. Set it up in minutes on your own machine.</p>
             </div>
           </div>
           <div className="hr-cta-actions">
-            <Button className="hr-btn hr-btn-cta-primary" type="button" onClick={() => openAuth(false)}>
-              Start Free Trial
-            </Button>
-            <Button className="hr-btn hr-btn-cta-outline" type="button" onClick={() => openAuth(true)}>
-              Book a Demo
+            <Button className="hr-btn hr-btn-cta-primary" type="button" onClick={openAuth}>
+              Get Started
             </Button>
           </div>
           <div className="hr-cta-stats">
@@ -396,23 +357,10 @@ export default function LandingAndAuthPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="hr-how-it-works" id="how-it-works">
-        <div className="hr-section-inner">
-          <div className="hr-hiw-header">
-            <h2>How HushRag Works</h2>
-            <p className="hr-hiw-subtitle">Two simple pipelines. 100% private.</p>
-          </div>
-          <div className="hr-hiw-visual">
-            <Image
-              src="/images/how-it-works.png"
-              alt="How HushRag Works flowchart showing Document Upload Pipeline and Employee Query Pipeline"
-              width={3840}
-              height={2043}
-              priority
-            />
-          </div>
-        </div>
-      </section>
+      <HowItWorks />
+
+      {/* Closing CTA + Footer */}
+      <PageFooter />
     </main>
   );
 }

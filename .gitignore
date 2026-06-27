@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+Thumbs.db
 
 # debug
 npm-debug.log*
@@ -30,8 +31,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files
+.env
+.env.*
+!.env.example
 
 # vercel
 .vercel
@@ -45,6 +48,19 @@ next-env.d.ts
 *.sqlite-shm
 *.sqlite-wal
 
-# agents config
+# agents & IDE config
 .agents/
+CLAUDE.md
+.idea/
+.vscode/
+*.swp
+*.swo
+skills-lock.json
+
+# generated outputs
+brag-output-*/
+
+# OS files
+.DS_Store
+Thumbs.db
 

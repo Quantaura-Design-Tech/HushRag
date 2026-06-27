@@ -1,6 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import {
+  Cable,
+  FolderOpen,
+  LogOut,
+  MessageSquare,
+  ScrollText,
+  Settings,
+} from 'lucide-react';
 import { splitMarkdownIntoChunks, buildSearchIndex, searchIndex } from '@/lib/client-search';
 import { generateEmbeddings, generateQueryEmbedding } from '@/lib/embeddings-client';
 import { parseMarkdown } from '@/lib/markdown';
@@ -740,59 +748,58 @@ export default function DashboardPage() {
 
 
 
+  const navItems = [
+    { key: 'files', label: 'Guideline Folders', icon: FolderOpen, onClick: () => { setActiveTab('files'); setActiveCategory(null); } },
+    { key: 'playground', label: 'Bot Playground', icon: MessageSquare, onClick: () => { setActiveTab('playground'); setPlaygroundMessages([{ role: 'assistant', content: 'Hello! I am your policy assistant. Please select a category folder or type a question to get started.' }]); } },
+    { key: 'audit-logs', label: 'Employee Chat Logs', icon: ScrollText, onClick: () => { setActiveTab('audit-logs'); fetchAuditLogs(); } },
+    { key: 'settings', label: 'Master Settings', icon: Settings, onClick: () => setActiveTab('settings') },
+    { key: 'channels', label: 'Connect Channels', icon: Cable, onClick: () => setActiveTab('channels') },
+  ];
+
   return (
-    <div className="app-container">
-      {/* Sidebar Layout */}
-      <div className="sidebar">
-        <div className="sidebar-logo">
-          <div className="pulse-indicator"></div>
-          <div>
-            <h3 className="sidebar-logo-text">HushRag</h3>
-            <span className="sidebar-logo-sub">{orgName}</span>
-          </div>
+    <div className="hr-dash">
+      <header className="hr-dash-topbar">
+        <a className="hr-brand" href="/">
+          <span className="hr-mark" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span>HushRag</span>
+        </a>
+        <div className="hr-dash-topbar-right">
+          <span className="hr-dash-workspace">
+            <span className="hr-dash-workspace-dot" />
+            {orgName || 'Workspace'}
+          </span>
+          <span className="hr-dash-email">{userEmail}</span>
+          <button onClick={handleLogout} className="hr-dash-signout">
+            <LogOut size={14} /> Sign out
+          </button>
         </div>
+      </header>
 
-        <ul className="nav-list">
-          <li
-            className={`nav-item ${activeTab === 'files' ? 'active' : ''}`}
-            onClick={() => { setActiveTab('files'); setActiveCategory(null); }}
-          >
-            📁 Guideline Folders
-          </li>
-          <li
-            className={`nav-item ${activeTab === 'playground' ? 'active' : ''}`}
-            onClick={() => { setActiveTab('playground'); setPlaygroundMessages([{ role: 'assistant', content: 'Hello! I am your policy assistant. Please select a category folder or type a question to get started.' }]); }}
-          >
-            💬 Bot Playground
-          </li>
-          <li
-            className={`nav-item ${activeTab === 'audit-logs' ? 'active' : ''}`}
-            onClick={() => { setActiveTab('audit-logs'); fetchAuditLogs(); }}
-          >
-            📜 Employee Chat Logs
-          </li>
-          <li
-            className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`}
-            onClick={() => setActiveTab('settings')}
-          >
-            ⚙️ Master Settings
-          </li>
-          <li
-            className={`nav-item ${activeTab === 'channels' ? 'active' : ''}`}
-            onClick={() => setActiveTab('channels')}
-          >
-            🔌 Connect Channels
-          </li>
-        </ul>
+      <div className="hr-dash-body">
+        <aside className="hr-dash-sidebar" aria-label="Dashboard sections">
+          <nav>
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.key}
+                  type="button"
+                  className={`hr-dash-nav-item ${activeTab === item.key ? 'is-active' : ''}`}
+                  onClick={item.onClick}
+                >
+                  <Icon size={16} strokeWidth={1.7} />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </nav>
+        </aside>
 
-        <div className="sidebar-footer">
-          <span className="sidebar-email">{userEmail}</span>
-          <button onClick={handleLogout} className="sidebar-logout-btn">Sign Out</button>
-        </div>
-      </div>
-
-      {/* Main Dashboard Panel */}
-      <div className="main-content">
+        <main className="hr-dash-main">
         
         {/* VIEW: FILE & FOLDER CMS */}
         {activeTab === 'files' && (
@@ -1607,7 +1614,7 @@ export default function DashboardPage() {
                         </div>
                       </ScrollArea>
                     </div>
-                  ) : (
+                   ) : (
                     <div className="empty-transcript">
                       Select a conversation session on the left to decrypt and view transcript.
                     </div>
@@ -1618,6 +1625,7 @@ export default function DashboardPage() {
           </div>
         )}
 
+        </main>
       </div>
     </div>
   );
